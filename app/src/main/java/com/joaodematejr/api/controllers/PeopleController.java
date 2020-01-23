@@ -1,6 +1,7 @@
 package com.joaodematejr.api.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -48,6 +49,7 @@ public class PeopleController {
 			result.getAllErrors().forEach(err -> errs.add(err.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(new Response<People>(errs));
 		}
+		people.setRegistrationDate(Calendar.getInstance());
 		return ResponseEntity.ok(new Response<People>(this.peopleService.register(people)));
 		
 	}
@@ -61,6 +63,9 @@ public class PeopleController {
 			return ResponseEntity.badRequest().body(new Response<People>(errs));
 		}
 		people.setId(id);
+		
+		people.setUpdateData(Calendar.getInstance());
+		people.setRegistrationDate(people.getRegistrationDate());
 		return ResponseEntity.ok(new Response<People>(this.peopleService.update(people)));
 		
 	}

@@ -1,30 +1,69 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { BounceLoader } from "react-spinners";
+import { css } from "@emotion/core";
 
 import "./Login.css";
+import api from "../services/api";
 // import { Container } from './styles';
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+  margin-top: 30px;
+`;
+
 export default function Login({ history }) {
-  const [login, setLogin] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-
+  //FUNÇÃO PARA CHAMADA DA API
   async function handleSubmit(e) {
+    setLoading(true)
     e.preventDefault();
 
-
-    const res = await axios.get('http://192.168.2.153:8080/api/people/', {
-      // Axios looks for the `auth` option, and, if it is set, formats a
-      // basic auth header for you automatically.
-      auth: {
-        username: 'user',
-        password: 'b1c369c9-3b16-4a66-98f3-28b7f7abe324'
+    await api.get('/api/people/', {
+      auth: { username, password }
+    }).then(function (response) {
+      // handle success
+      console.log(response);
+    }).catch(function (error) {
+      setLoading(false);
+      //VALIDAR RETORNO DO ERRO DO BACKEND
+      if (!error.status) {
+        if (error.response.status === 401) {
+          alert('Aviso !!! Credenciais ruins.')
+        } else {
+          alert(error.response)
+        }
       }
+    }).then(function () {
+      setLoading(false)
     });
 
+  }
 
-    console.log(res.status)
-
+  function renderButton() {
+    if (loading === true) {
+      return (
+        <BounceLoader
+          css={override}
+          size={30}
+          color={"#123abc"}
+          loading={true}
+        />
+      )
+    } else {
+      return (
+        <button
+          style={{ marginTop: 25 }}
+          type="submit"
+        >
+          Logar
+        </button>
+      )
+    }
   }
 
   return (
@@ -37,8 +76,8 @@ export default function Login({ history }) {
           required
           type="text"
           autoComplete="email"
-          value={login}
-          onChange={e => setLogin(e.target.value)}
+          value={username}
+          onChange={e => setUsername(e.target.value)}
         />
         <input
           placeholder="Digite Senha da API"
@@ -49,7 +88,7 @@ export default function Login({ history }) {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button type="submit">Logar</button>
+        {renderButton()}
       </form>
     </div>
   );

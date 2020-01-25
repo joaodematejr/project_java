@@ -131,6 +131,18 @@ aside form .input-block input {
   color: grey;
 }
 
+aside form .input-block select {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+  height: 48px;
+  padding-left: 10;
+  padding: 0 20px;
+  font-size: 16px;
+  color: grey;
+}
+
 aside form button[type="submit"] {
   width: 100%;
   margin-top: 20px;
@@ -185,7 +197,7 @@ li.dev-item header {
 
 
 li.dev-item header .user-info {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .user-info strong {
@@ -205,4 +217,35 @@ li.dev-item p {
   font-size: 14px;
   line-height: 20px;
   margin: 10px 0;
+}
+
+.MuiOutlinedInput-input {
+  width: 100%;
+  margin-top: 20px;
+  border: 1px solid gainsboro;
+  border-radius: 4px !important;
+  height: 48px;
+  padding: 0 20px !important;
+  font-size: 16px !important;
+  color: grey !important;
+  padding: 16.5px 14px !important;
+}
+
+.MuiPickersToolbar-toolbar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #1B5E20 !important;
+}
+
+.MuiPickersDay-daySelected {
+  color: #fff;
+  font-weight: 500;
+  background-color: #1B5E20 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 1px solid gainsboro;
 }

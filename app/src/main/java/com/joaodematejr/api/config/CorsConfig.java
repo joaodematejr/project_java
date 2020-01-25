@@ -26,8 +26,8 @@ public class CorsConfig implements Filter {
 		String origin = request.getHeader("Origin");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Origin", origin != null && origin.contains("ws") ? "" : origin);
-		response.setHeader("Vary", "Origin");
-		response.setHeader("Access-Control-Allow-Methods", "*");
+		response.setHeader("Vary", "Origin");	
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
 		response.setHeader("Access-Control-Allow-Headers",
 				"Origin, X-Requested-With, Authorization, Content-Type, Accept, X-CSRF-TOKEN");
 		response.setHeader("Access-Control-Max-Age", "3600");

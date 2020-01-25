@@ -1,7 +1,6 @@
 package com.joaodematejr.api.controllers;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,7 +22,7 @@ import com.joaodematejr.api.documents.People;
 import com.joaodematejr.api.responses.Response;
 import com.joaodematejr.api.services.PeopleService;
 
-@CrossOrigin(maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping(path = "/api/people")
 public class PeopleController {
@@ -44,6 +43,7 @@ public class PeopleController {
 	}
 
 	// CADASTRAR
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping
 	public ResponseEntity<Response<People>> register(@Valid @RequestBody People people, BindingResult result) {
 		if (result.hasErrors()) {
@@ -51,7 +51,6 @@ public class PeopleController {
 			result.getAllErrors().forEach(err -> errs.add(err.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(new Response<People>(errs));
 		}
-		people.setRegistrationDate(Calendar.getInstance());
 		return ResponseEntity.ok(new Response<People>(this.peopleService.register(people)));
 
 	}
@@ -66,9 +65,6 @@ public class PeopleController {
 			return ResponseEntity.badRequest().body(new Response<People>(errs));
 		}
 		people.setId(id);
-
-		people.setUpdateData(Calendar.getInstance());
-		people.setRegistrationDate(people.getRegistrationDate());
 		return ResponseEntity.ok(new Response<People>(this.peopleService.update(people)));
 
 	}
@@ -79,5 +75,5 @@ public class PeopleController {
 		this.peopleService.remove(id);
 		return ResponseEntity.ok(new Response<Integer>(1));
 	}
-
+	
 }

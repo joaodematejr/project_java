@@ -1,6 +1,6 @@
 package com.joaodematejr.api.documents;
 
-import java.util.Calendar;
+import javax.persistence.Column;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,12 +16,12 @@ public class People {
 	private String name;
 	private String sex;
 	private String email;
-	private Calendar birthDate;
+	private String birthDate;
 	private String naturalness;
 	private String nationality;
 	private String cpf;
-	private Calendar registrationDate;
-	private Calendar updateData; 
+	private String registrationDate;
+	private String updateData; 
 	
 	public People() {
 		
@@ -61,12 +61,12 @@ public class People {
 		this.email = email;
 	}
 
-	//@NotEmpty(message = "Aviso !!! O Campo de Data de Nascimento está vazia.")
-	public Calendar getBirthDate() {
+	@NotEmpty(message = "Aviso !!! O Campo de Data de Nascimento está vazia.")
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Calendar birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -88,6 +88,7 @@ public class People {
 
 	@NotEmpty(message = "Aviso !!! O Campo do CPF está vazio.")
 	@CPF(message = "Aviso !!! CPF inválido.")
+	@Column(unique=true)
 	public String getCpf() {
 		return cpf;
 	}
@@ -96,19 +97,19 @@ public class People {
 		this.cpf = cpf;
 	}
 
-	public Calendar getRegistrationDate() {
+	public String getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Calendar registrationDate) {
+	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
-	public Calendar getUpdateData() {
+	public String getUpdateData() {
 		return updateData;
 	}
 
-	public void setUpdateData(Calendar updateData) {
+	public void setUpdateData(String updateData) {
 		this.updateData = updateData;
 	}
 	

@@ -22,11 +22,11 @@ services:
     networks:
       - app-network
 
-  nginx:
+  node:
     restart: always
     build:
       context: .
-      dockerfile: nginx.dockerfile
+      dockerfile: node.dockerfile
     expose:
       - "80"
     ports:

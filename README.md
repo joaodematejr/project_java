@@ -1,7 +1,7 @@
 # DESAFIO TÉCNICO
 
 # API RESTful
-API RESTful com Spring Boot, Java 8, MongoDB e Spring Security
+API RESTful com Spring Boot, Java 8, MongoDB, Spring Security e React no Frontend
 
 ### Como executar a aplicação
 Certifique-se de ter o Maven instalado e adicionado ao PATH de seu sistema operacional, assim como o Git.

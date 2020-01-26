@@ -1,0 +1,41 @@
+version: '1'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: mongo.dockerfile
+    expose:
+      - "27017"
+    networks:
+      - app-network
+
+  staff-service:
+    restart: always
+    container_name: service
+    build:
+      context: ./app/service
+      dockerfile: Dockerfile
+    expose:
+      - "8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  nginx:
+    restart: always
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    depends_on:
+      - staff-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

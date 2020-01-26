@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableWebSecurity
 @Configuration
-@RequestMapping(path = "/api/")
 public class CodeController {
 	
-	@RequestMapping(value = "sourcecode")
+	@RequestMapping(value = "source")
 	  public String sourceCode() {
 	    return "Link do Repositorio: https://github.com/joaodematejr/project_java";
 	  }

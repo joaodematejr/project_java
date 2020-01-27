@@ -12,12 +12,19 @@ mvn spring-boot:run
 Acesse http://localhost:8080/api/people
 Utilize o usuário "admin" e a senha "admin" para autenticar.
 ```
-### APIs Endpoints
+### APIs Endpoints (LOCAL)
 GET http://localhost:8080/api/people [Lista todas as pessoas cadastrada no banco]  
 GET http://localhost:8080/api/people/{id} [Lista uma pessoa por ID]  
 POST http://localhost:8080/api/people [Cadastra uma nova pessoa]  
 PUT http://localhost:8080/api/people/{id} [Atualizar os dados de uma pessoa]  
 DELETE http://localhost:8080/api/people/{id} [remove uma pessoa por ID]  
+
+### APIs Endpoints (NUVEM)
+GET https://apipeople.herokuapp.com/api/people [Lista todas as pessoas cadastrada no banco]  
+GET https://apipeople.herokuapp.com/api/api/people/{id} [Lista uma pessoa por ID]  
+POST https://apipeople.herokuapp.com/api/api/people [Cadastra uma nova pessoa]  
+PUT https://apipeople.herokuapp.com/api/api/people/{id} [Atualizar os dados de uma pessoa]  
+DELETE https://apipeople.herokuapp.com/api/people/{id} [remove uma pessoa por ID]  
 
 Exemplo de corpo para realização da requisição post da funcionalidade cadastrar
 
@@ -36,6 +43,7 @@ Exemplo de corpo para realização da requisição post da funcionalidade cadast
 ```
 
 GET http://localhost:8080/source [Retorna link do repositorio no github] [não precisa de autenticação] 
+GET https://apipeople.herokuapp.com/source [Retorna link do repositorio no github] [não precisa de autenticação] 
 
 ### Importando o projeto no Eclipse ou STS
 No terminal, execute a seguinte operação:
@@ -44,7 +52,7 @@ mvn eclipse:eclipse
 ```
 No Eclipse/STS, importe o projeto como projeto Maven.
 
-### Como executar frontend
+### Como executar frontend (LOCAL)
 Certifique-se de ter o Node instalado em seu sistema operacional.
 ```
 git clone https://github.com/joaodematejr/project_java
@@ -53,3 +61,11 @@ npm install && npm start ou [precisar ter o yarn instalado] yarn && yarn start
 Acesse http://localhost:3000/
 Utilize o usuário "admin" e a senha "admin" para autenticar.  
 ```
+
+### Como executar frontend (NUVEM)
+
+http://peoplefrontend.herokuapp.com/
+```
+Utilize o usuário "admin" e a senha "admin" para autenticar.  
+```
+
